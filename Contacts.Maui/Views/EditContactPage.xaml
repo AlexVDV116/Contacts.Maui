@@ -4,19 +4,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Maui.Views.EditContactPage"
              Title="Edit Contact">
-    
+
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Label
-                x:Name="lblName"
-                Text="Edit Contact"
-                FontSize="Title"
-                FontAttributes="Bold"
-                HorizontalOptions="Center" />
+
+        <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
+
+            <Frame Padding="10, 2, 10, 2">
+                <HorizontalStackLayout>
+                    <Label Text="Name" VerticalOptions="Center" WidthRequest="60"></Label>
+                    <Entry x:Name="EntryName" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10, 2, 10, 2">
+                <HorizontalStackLayout>
+                    <Label Text="Email" VerticalOptions="Center" WidthRequest="60"></Label>
+                    <Entry x:Name="EntryEmail" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10, 2, 10, 2">
+                <HorizontalStackLayout>
+                    <Label Text="Phone" VerticalOptions="Center" WidthRequest="60"></Label>
+                    <Entry x:Name="EntryPhone" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="10, 2, 10, 2">
+                <HorizontalStackLayout>
+                    <Label Text="Address" VerticalOptions="Center" WidthRequest="60"></Label>
+                    <Entry x:Name="EntryAddress" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Button x:Name="BtnUpdate" Clicked="BtnUpdate_OnClicked" Text="Update"></Button>
             <Button x:Name="BtnCancel" Clicked="BtnCancel_OnClicked" Text="Cancel"></Button>
+
         </VerticalStackLayout>
+
     </ScrollView>
-    
+
 </ContentPage>

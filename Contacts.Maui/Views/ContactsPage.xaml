@@ -6,7 +6,7 @@
              Title="Contacts">
 
 <ListView
-    x:Name="listContacts"
+    x:Name="ListContacts"
     BackgroundColor="Transparent"
     RowHeight="60"
     ItemSelected="ListContacts_OnItemSelected"

@@ -9,11 +9,38 @@ public static class ContactRepository
         new Contact { ContactId = 2, Name = "John Smith", Email = "JohnSmith@email.com" },
         new Contact { ContactId = 3, Name = "Jane Smith", Email = "JaneSmith@email.com" }
     };
-    
+
     public static List<Contact> GetContacts() => _contacts;
 
     public static Contact? GetContactById(int contactId)
     {
-        return _contacts.FirstOrDefault(c => c.ContactId == contactId);
+        var contact = _contacts.FirstOrDefault(c => c.ContactId == contactId);
+        if (contact != null)
+        {
+            return new Contact
+            {
+                ContactId = contact.ContactId,
+                Name = contact.Name,
+                Email = contact.Email,
+                Phone = contact.Phone,
+                Address = contact.Address
+            };
+        }
+
+        return null;
+    }
+
+    public static void UpdateContact(int contactId, Contact contact)
+    {
+        if (contactId != contact.ContactId) return;
+        
+        var contactToUpdate = _contacts.FirstOrDefault(c => c.ContactId == contactId);
+        if (contactToUpdate != null)
+        {
+            contactToUpdate.Name = contact.Name;
+            contactToUpdate.Email = contact.Email;
+            contactToUpdate.Phone = contact.Phone;
+            contactToUpdate.Address = contact.Address;
+        }
     }
 }
