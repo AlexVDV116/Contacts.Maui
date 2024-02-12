@@ -10,6 +10,7 @@
     BackgroundColor="Transparent"
     RowHeight="60"
     ItemSelected="ListContacts_OnItemSelected"
+    ItemTapped="ListContacts_OnItemTapped"
     >
     
     <ListView.ItemTemplate>
