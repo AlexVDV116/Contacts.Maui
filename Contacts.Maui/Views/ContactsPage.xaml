@@ -8,10 +8,17 @@
 
     <Grid
         Padding="5"
-        RowDefinitions="*, 50"
+        RowDefinitions="50, *, 50"
         ColumnDefinitions="*">
-        <ListView
+        <SearchBar
+            x:Name="SearchBar"
             Grid.Row="0"
+            Grid.Column="0"
+            Placeholder="Search Contacts"
+            TextChanged="SearchBar_OnTextChanged"
+            />
+        <ListView
+            Grid.Row="1"
             Grid.Column="0"
             x:Name="ListContacts"
             BackgroundColor="Transparent"
@@ -23,6 +30,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Detail="{Binding Email}">
+                        <!-- ContextAction for Android is a long LMB press -->
+                        <!-- ContextAction for macOS is a two finger swipe -->
                         <TextCell.ContextActions>
                             <MenuItem 
                                 Text="Delete" 
@@ -38,7 +47,7 @@
         </ListView>
 
         <Button x:Name="BtnAddContact"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="0"
                 Text="Add Contact"
                 Clicked="BtnAddContact_OnClicked">
