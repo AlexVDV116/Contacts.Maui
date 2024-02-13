@@ -1,4 +1,5 @@
 using Contacts.Maui.Models;
+using Contacts.Maui.Views.Controls;
 using Contact = Contacts.Maui.Models.Contact;
 
 namespace Contacts.Maui.Views;
@@ -25,38 +26,28 @@ public partial class EditContactPage : ContentPage
             _contact = ContactRepository.GetContactById(int.Parse(value));
             if (_contact != null)
             {
-                EntryName.Text = _contact.Name;
-                EntryEmail.Text = _contact.Email;
-                EntryPhone.Text = _contact.Phone;
-                EntryAddress.Text = _contact.Address;
+                ContactControl.Name = _contact.Name;
+                ContactControl.Email = _contact.Email;
+                ContactControl.Phone = _contact.Phone;
+                ContactControl.Address = _contact.Address;
             }
         }
     }
 
     private void BtnUpdate_OnClicked(object? sender, EventArgs e)
     {
-        if (NameValidator.IsNotValid)
-        {
-            DisplayAlert("Name Required", "Please enter a name", "OK");
-            return;
-        }
-
-        if (EmailValidator.IsNotValid)
-        {
-            foreach (var error in EmailValidator.Errors)
-            {
-                DisplayAlert("Email Error", error.ToString(), "OK");
-            }
-            return;
-        }
-        
-        _contact.Name = EntryName.Text;
-        _contact.Email = EntryEmail.Text;
-        _contact.Phone = EntryPhone.Text;
-        _contact.Address = EntryAddress.Text;
+        _contact.Name = ContactControl.Name;
+        _contact.Email = ContactControl.Email;
+        _contact.Phone = ContactControl.Phone;
+        _contact.Address = ContactControl.Address;
         
         ContactRepository.UpdateContact(_contact.ContactId, _contact);
         Shell.Current.GoToAsync("..");
 
+    }
+
+    private void ContactControl_OnError(object? sender, string e)
+    {
+        DisplayAlert("Error", e, "Ok");
     }
 }
