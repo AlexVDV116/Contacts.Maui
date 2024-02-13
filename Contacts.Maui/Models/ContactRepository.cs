@@ -50,4 +50,13 @@ public static class ContactRepository
         contact.ContactId = maxId + 1;
         _contacts.Add(contact);
     }
+
+    public static void DeleteContact(int contactId)
+    {
+        var contact = _contacts.FirstOrDefault(c => c.ContactId == contactId);
+        if (contact != null)
+        {
+            _contacts.Remove(contact);
+        }
+    }
 }
